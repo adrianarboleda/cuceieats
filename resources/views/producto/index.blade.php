@@ -1,34 +1,85 @@
-@extends('layout')
+@extends('layouts.app')
+
+@section('template_title')
+    Producto
+@endsection
 
 @section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
 
-    <div class="container col-12 col-sm-6 col-xl-4 border p-4">
-        <h2 class="d-flex justify-content-center">Crear Producto</h2>
-        <form action="">
-            <div class="mb-3 form-check">
-                <label for="nombre" class="form-label">Nombre del Producto</label>
-                <input id="nombre" class="form-control form-control-lg" type="text">
+                            <span id="card_title">
+                                {{ __('Producto') }}
+                            </span>
+
+                             <div class="float-right">
+                                <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
+                              </div>
+                        </div>
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>No</th>
+                                        
+										<th>Nombre</th>
+										<th>Descripcion</th>
+										<th>Precio</th>
+										<th>Categoría</th>
+										<th>Vegano</th>
+										<th>Vegetariano</th>
+										<th>Id Tienda</th>
+										<th>Deshabilitado</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($productos as $producto)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            
+											<td>{{ $producto->nombre }}</td>
+											<td>{{ $producto->descripcion }}</td>
+											<td>{{ $producto->precio }}</td>
+											<td>{{ $producto->categoría }}</td>
+											<td>{{ $producto->vegano }}</td>
+											<td>{{ $producto->vegetariano }}</td>
+											<td>{{ $producto->id_tienda }}</td>
+											<td>{{ $producto->deshabilitado }}</td>
+
+                                            <td>
+                                                <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('productos.edit',$producto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {!! $productos->links() !!}
             </div>
-            <div class="mb-3 form-check">
-                <label for="precio" class="form-label">Precio</label>
-                <input id="precio" class="form-control" type="number" step="0.01" min="0">
-            </div>
-            <div class="mb-3 form-check">
-                <label class="form-check-label" for="exampleCheck1">Tipo</label>
-                <select id="tipo" class="form-select" multiple>
-                    <option selected>Seleccionar...</option>
-                    <option value="1">Bebida</option>
-                    <option value="2">Postre</option>
-                    <option value="3">Comida Completa</option>
-                    <option value="4">Snack</option>
-                  </select>
-            </div>
-            <div class="mb-3 form-check center">
-                <label class="form-check-label" for="vegetariano">Vegetariano</label>
-                <input class="form-check-input" type="checkbox" value="" id="vegetariano" checked>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </div>
-
 @endsection
