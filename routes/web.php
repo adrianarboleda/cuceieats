@@ -21,6 +21,6 @@ Route::get('/producto', function () {
     return view('producto.index');
 });
 
-Route::resource('/productos', 'ProductoController')->middleware('auth');
+Route::resource('/productos', 'ProductoController')->name('index','productos')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
