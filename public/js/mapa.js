@@ -8,17 +8,6 @@ var map = new ol.Map({
           new ol.layer.Tile({
             source: new ol.source.OSM({})
           })
-          /*new ol.layer.Tile({
-		      visible: false,
-		      preload: Infinity,
-		      source: new BingMaps({
-		        key: 'AgdbjZJ9pgRPQYfUZ0KeIA7fQ0aRbqN20ravwybzSNaDs1ApDVmAgDLhAOEG-rZd',
-		        imagerySet: styles[1],
-		        // use maxZoom 19 to see stretched tiles instead of the BingMaps
-		        // "no photos at this zoom level" tiles
-		        // maxZoom: 19
-		      })
-		    })*/
         ],
         view: new ol.View({
           center: ol.proj.fromLonLat([-103.324943, 20.656914]),
@@ -44,7 +33,6 @@ map.on('singleclick', function (event) {
          })
          if(feature){
             var text = feature.get('name');
-            //url = url.replace(':nombre', text);
             content.innerHTML = text + ' ' + '<a class="nav-link" href="'+ route('local', {nombre: text}) +'">Ver menú</a>';
          }else{
             content.innerHTML = '';
