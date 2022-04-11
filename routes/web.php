@@ -21,6 +21,10 @@ Route::get('/producto', function () {
     return view('producto.index');
 });
 
+Route::get('/mapaCucei', 'MapaController@index')->name('mapa');
+
+Route::get('/local/{nombre}', 'LocalController@index')->name('local');
+
 Route::resource('/productos', 'ProductoController')->name('index','productos')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
