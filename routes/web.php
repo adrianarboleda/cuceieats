@@ -25,6 +25,8 @@ Route::get('/mapaCucei', 'MapaController@index')->name('mapa');
 
 Route::get('/local/{nombre}', 'LocalController@index')->name('local');
 
-Route::resource('/productos', 'ProductoController')->name('index','productos')->middleware('auth');
+Route::resource('/productos', 'ProductoController')->middleware('auth');
+
+Route::resource('/users', 'UserController')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');

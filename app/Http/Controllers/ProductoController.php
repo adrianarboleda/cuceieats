@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 /**
@@ -19,6 +20,10 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::paginate();
+
+        if( ! auth()->user()->isAdmin()) {
+            $productos = Producto::where('id_tienda','=', Auth::user()->id)->paginate();
+        }
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());

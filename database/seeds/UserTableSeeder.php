@@ -23,5 +23,11 @@ class UserTableSeeder extends Seeder
                 'role' => 'admin'
             ]);
         }
+
+        User::create([
+            'name' => 'Tienda1',
+            'email' => 'tienda1@gmail.com',
+            'password' => Hash::make('123$%&')
+        ]);
     }
 }

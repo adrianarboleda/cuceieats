@@ -1,3 +1,4 @@
+@routes
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>CUCEI Eats</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -72,9 +73,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <div style="display:none">@routes</div>
+                <div style="display:none"></div>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    CUCEI Eats
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -85,12 +86,12 @@
                     <ul class="navbar-nav mr-auto">
                         @if (auth()->user() && auth()->user()->isAdmin())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
+                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('User') }}</a>
                             </li>
                         @endif
                         @if (auth()->user())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('productos') }}">{{ __('Productos') }}</a>
+                                <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
                             </li>
                         @endif
                         @if (auth()->user())
@@ -123,6 +124,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item"> Mi Perfil</a>
                                 </div>
                             </li>
                         @endguest

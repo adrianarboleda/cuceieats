@@ -26,14 +26,14 @@ class Producto extends Model
 {
     
     static $rules = [
-		'nombre' => 'required',
-		'descripcion' => 'required',
-		'precio' => 'required',
-		'categoría' => 'required',
-		'vegano' => 'required',
-		'vegetariano' => 'required',
-		'id_tienda' => 'required',
-		'deshabilitado' => 'required',
+      'nombre' => 'required',
+      'descripcion' => 'required',
+      'precio' => 'required',
+      'categoría' => 'required',
+      'vegano' => 'required',
+      'vegetariano' => 'required',
+      'id_tienda' => 'required',
+      'deshabilitado' => 'required',
     ];
 
     protected $perPage = 20;
