@@ -1,4 +1,3 @@
-@routes
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -73,6 +72,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <div style="display:none">@routes</div>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -88,13 +88,16 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                             </li>
                         @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos') }}">{{ __('Productos') }}</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mapa') }}">{{ __('Mapa') }}</a>
-                        </li>
+                        @if (auth()->user())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('productos') }}">{{ __('Productos') }}</a>
+                            </li>
+                        @endif
+                        @if (auth()->user())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('mapa') }}">{{ __('Mapa') }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
